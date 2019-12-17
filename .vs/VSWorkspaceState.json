@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\assets",
+    "\\src\\components",
+    "\\src\\plugins",
+    "\\src\\services",
+    "\\src\\Views",
+    "\\wwwroot"
+  ],
+  "SelectedNode": "\\vueproject.csproj",
+  "PreviewInSolutionExplorer": false
+}
