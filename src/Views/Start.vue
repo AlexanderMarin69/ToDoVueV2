@@ -53,7 +53,7 @@
                 <v-card-title class="headline">Kundvagn</v-card-title>
                 <v-card-text>
                     <div v-for="(product, index) in cart" v-bind:key="index" class="pa-1">
-
+                        hello
 
                         <div style="color: black; font-weight: bold; font-size: 24px; padding: 10px;">
                             <v-layout wrap>
