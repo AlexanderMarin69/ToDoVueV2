@@ -11,8 +11,4 @@ C:\Users\alexa\source\repos\vueproject\obj\Debug\netcoreapp2.2\vueproject.Assemb
 C:\Users\alexa\source\repos\vueproject\obj\Debug\netcoreapp2.2\vueproject.RazorTargetAssemblyInfo.cache
 C:\Users\alexa\source\repos\vueproject\obj\Debug\netcoreapp2.2\vueproject.dll
 C:\Users\alexa\source\repos\vueproject\obj\Debug\netcoreapp2.2\vueproject.pdb
-C:\Users\alexa\source\repos\vueproject\bin\Debug\netcoreapp2.2\appsettings.Development.json
-C:\Users\alexa\source\repos\vueproject\bin\Debug\netcoreapp2.2\appsettings.json
-C:\Users\alexa\source\repos\vueproject\bin\Debug\netcoreapp2.2\package-lock.json
-C:\Users\alexa\source\repos\vueproject\bin\Debug\netcoreapp2.2\package.json
-C:\Users\alexa\source\repos\vueproject\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\Users\alexa\source\repos\vueproject\obj\Debug\netcoreapp2.2\vueproject.csproj.CoreCompileInputs.cache

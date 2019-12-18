@@ -11,6 +11,10 @@
                 Error encountered while loading
             </v-alert>
         </div>
+
+       <RegisterUserForm></RegisterUserForm>
+        <Login></Login>
+
         <v-card shaped raised class="mt-5 pa-3 mx-auto"
                 max-width="344">
             <v-text-field type="text"
@@ -79,10 +83,10 @@
                         </div>
 
                         <!--<div v-if="cart.length < 1" style="color: black; font-weight: bold; font-size: 24px; padding: 10px;">
-                            <h6>cart is empty :)</h6>
-                        </div>-->
+                        <h6>cart is empty :)</h6>
+                    </div>-->
 
-                  
+
 
 
 
@@ -107,11 +111,15 @@
 <script>
     import Todos from '@/components/Todos'
     import generic from '@/services/generic'
+    import Login from '@/components/Login'
+    import RegisterUserForm from '@/components/RegisterUserForm'
     import axios from 'axios'
     import { mapState, mapMutations, mapActions} from 'vuex';
     export default {
         components: {
-            Todos
+            Todos,
+            Login,
+            RegisterUserForm
         },
         data: function () {
             return {
