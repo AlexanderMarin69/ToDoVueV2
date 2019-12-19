@@ -53,7 +53,6 @@
             ...mapMutations({
                 setUsername: 'login/SET_USERNAME',
                 setPassword: 'login/SET_PASSWORD',
-                setLoginDialog: 'SET_LOGIN_DIALOG'
             }),
             ...mapActions('login', {
                 userLogin: 'LOGIN'
@@ -61,10 +60,8 @@
             login() {
                 let data = { vm: this.loginViewModel, redirectUrl: this.redirectUrl };
                 this.userLogin(data);
-                this.setLoginDialog(false);
             },
             register() {
-                this.setLoginDialog(false);
                 this.$router.push('/register');
             }
         },

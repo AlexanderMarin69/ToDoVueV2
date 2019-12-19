@@ -5,10 +5,10 @@
     SET_USERNAME(state, username) {
         state.loginViewModel.username = username;
     },
-    SET_REMEMBER_ME(state, rememberMe) {
-        //TODO auto set is false, set to "rememberMe" when function implemented
-        state.loginViewModel.rememberMe = false;
-    },
+    //SET_REMEMBER_ME(state, rememberMe) {
+    //    //TODO auto set is false, set to "rememberMe" when function implemented
+    //    state.loginViewModel.rememberMe = false;
+    //},
     SET_ERRORS(state, errors) {
         state.errors = errors;
     },
@@ -37,6 +37,8 @@
         state.customerViewModel.SelectedInvoiceAddressId = invoiceaddress;
     },
     SET_AS_LOGGED_IN(state, payload) {
+    /*eslint no-debugger: */
+        //debugger;
         state.isUserLoggedIn = payload;
     },
     SET_USERDATA(state, userData) {

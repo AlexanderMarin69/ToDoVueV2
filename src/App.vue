@@ -10,7 +10,7 @@
 
                     <v-toolbar-items>
                         <v-btn text> <router-link to="/">Start</router-link></v-btn>
-                        <v-btn text>        <router-link to="/About">About</router-link></v-btn>
+                        <v-btn text> <router-link to="/About">About</router-link></v-btn>
                     </v-toolbar-items>
 
                     <template v-if="$vuetify.breakpoint.smAndUp">

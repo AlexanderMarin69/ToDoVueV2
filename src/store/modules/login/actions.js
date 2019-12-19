@@ -3,20 +3,24 @@ import router from '@/plugins/default.router.js'
 
 export default {
     LOGIN({ commit }, data) {
+    /*eslint no-debugger: */
+        //debugger;
         commit('SET_LOADING', true, { root: true });
         return AccountService.login(data.vm)
             .then(() => {
-                commit('SET_LOADING', false, { root: true });
+                //commit('SET_LOADING', false, { root: true });
                 commit('SET_AS_LOGGED_IN', true);
                 if (data.redirectUrl != '') {
                     router.push(data.redirectUrl);
                 } else {
-                    router.push('/');
+                    router.push('/about');
                 }
             }).catch((result) => {
 
-                commit('SET_ERRORS', result);
-                commit('SET_LOADING', false, { root: true });
+                //commit('SET_ERRORS', result);
+                console.log(result);
+                //commit('SET_LOADING', false, { root: true });
+                debugger;   
                 commit('SET_AS_LOGGED_IN', false);
             });
     },
@@ -24,7 +28,7 @@ export default {
         return AccountService.isUserLoggedIn()
             .then(result => {
             /*eslint no-console: 1*/
-// custom console
+            // custom console
                 console.log(result)
                 return true;
             }).catch(result => {
@@ -45,7 +49,8 @@ export default {
             }).catch((result) => {
                 console.log(result)
                 commit('SET_ERRORS', result.response.data);
-                commit('SET_LOADING', false, { root: true });
+                console.log(result.response.data);
+                //commit('SET_LOADING', false, { root: true });
             });
     },
     CHANGE_PASSWORD( vm) {
@@ -104,33 +109,5 @@ export default {
                 timeout: 3000
             }, { root: true })
         })
-    },
-    IMPERSONATE({ state }) {
-        return AccountService.impersonate(state.selectedUser).then((result) => {
-            console.log("You are now someone else." + result.data[0])
-        }).catch(result => {
-            console.log(result);
-        })
-    },
-    STOP_IMPERSONATION() {
-        return AccountService.stopImpersonation()
-            .then(result => {
-                console.log(result);
-            }).catch(result => {
-                console.log(result);
-            });
-    },
-    GET_ALL_CUSTOMER_USERS({ commit }) {
-        return AccountService.getAllCustomerUsers().then(result => {
-            console.log(result)
-
-            if (result.data != null) {
-                for (var i = 0; i < result.data.length; i++) {
-                    commit('ADD_TO_USERS', result.data[i]);
-                }
-            }
-        }).catch(result => {
-            console.log(result)
-        });
     }
 }

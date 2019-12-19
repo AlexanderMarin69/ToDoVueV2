@@ -16,17 +16,6 @@ const store = new Vuex.Store({
 
 
         ],
-        loginViewModel: {
-            password: '',
-            username: '',
-        },
-        userData: {},
-        redirectUrl: '',
-        customerViewModel: {},
-        errors: {},
-        isUserLoggedIn: false,
-        users: [],
-        selectedUser: ''
     },
     //  mutations: {
     //      SET_NEW_CART_ITEM(state, product) {
@@ -55,10 +44,7 @@ const store = new Vuex.Store({
     //}
     mutations,
     actions,
-
 });
-
-
 if (module.hot) {
     // accept actions and mutations as hot modules
     //module.hot.accept(['./modules/windows/index',
@@ -68,7 +54,6 @@ if (module.hot) {
     //                    './modules/login/index',
     //                    './modules/deliveryAddress/index'],
     module.hot.accept(['./modules/login/index']);
-
     () => {
         // require the updated modules
         // have to add .default here due to babel 6 module output
@@ -78,9 +63,7 @@ if (module.hot) {
         //const newModuleMainDoor = require('./modules/maindoor/index').default
         //const newModuleLogin = require('./modules/login/index').default
         //const newModuleDeliveryAddress = require('./modules/deliveryAddress/index').default
-
         const newModuleLogin = require('./modules/login/index').default
-    
         // swap in the new modules and mutations
         store.hotUpdate({
             modules: {

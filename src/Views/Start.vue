@@ -12,8 +12,19 @@
             </v-alert>
         </div>
 
-       <RegisterUserForm></RegisterUserForm>
-        <Login></Login>
+
+
+        <RegisterUserForm v-if="mannenKanin"></RegisterUserForm>
+        <Login v-if="!mannenKanin"></Login>
+
+        <div v-if="isUserLoggedIn"><p>logged in</p></div>
+        <div v-if="!isUserLoggedIn"><p>not logged in</p></div>
+
+        <div v-if="mannenKanin"><p>kanin logged in</p></div>
+        <div v-if="!mannenKanin"><p>kanin not logged in</p></div>
+
+        {{isUserLoggedIn}}
+        kanin {{ mannenKanin }}
 
         <v-card shaped raised class="mt-5 pa-3 mx-auto"
                 max-width="344">
@@ -86,11 +97,6 @@
                         <h6>cart is empty :)</h6>
                     </div>-->
 
-
-
-
-
-
                     </div>
                 </v-card-text>
                 <v-card-actions>
@@ -119,11 +125,13 @@
         components: {
             Todos,
             Login,
-            RegisterUserForm
+            RegisterUserForm,
         },
         data: function () {
             return {
-                loggedin: false,
+                //isUserLoggedInForVShow: false,
+                //loggedin: false,
+                mannenKanin: false,
                 loading: false,
                 ShowTodos: false,
                 ShowInvoices: false,
@@ -140,6 +148,14 @@
             }
         },
         methods: {
+            checkIfUserIsLoggedIn() {
+                if (this.isUserLoggedIn) {
+                    this.mannenKanin = true
+                } else {
+                    this.mannenKanin = false
+
+                }
+            },
             showCart() {
                 this.showCartDialog = true;
             },
@@ -214,14 +230,16 @@
                     return 1
                 }
             },
-            ...mapState([
-                'title',
-                'cart'
-            ])
+            ...mapState({
+                title: state => state.title,
+                cart: state => state.cart,
+                isUserLoggedIn: state => state.login.isUserLoggedIn,
+                
+            })
         },
         mounted() {
-            this.getAllTodos();
-         
+          this.getAllTodos();
+          this.checkIfUserIsLoggedIn();
         }
     }
     

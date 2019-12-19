@@ -33,7 +33,7 @@ namespace vueproject.Controllers
         public IActionResult IsUserLoggedIn()
         {
             if (User.Identity.IsAuthenticated)
-                return Ok("User is authenticated");
+                return Ok();
             return Unauthorized();
         }
 
