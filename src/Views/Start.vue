@@ -12,19 +12,20 @@
             </v-alert>
         </div>
 
-
-
-        <RegisterUserForm v-if="mannenKanin"></RegisterUserForm>
-        <Login v-if="!mannenKanin"></Login>
-
-        <div v-if="isUserLoggedIn"><p>logged in</p></div>
-        <div v-if="!isUserLoggedIn"><p>not logged in</p></div>
-
-        <div v-if="mannenKanin"><p>kanin logged in</p></div>
-        <div v-if="!mannenKanin"><p>kanin not logged in</p></div>
-
-        {{isUserLoggedIn}}
-        kanin {{ mannenKanin }}
+        <template>
+            <v-row justify="center">
+                <v-dialog v-model="isUserLoggedInModal" max-width="400">
+                    <v-card>
+                        <Login></Login>
+                        <!--<v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
+                            <v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
+                        </v-card-actions>-->
+                    </v-card>
+                </v-dialog>
+            </v-row>
+        </template>
 
         <v-card shaped raised class="mt-5 pa-3 mx-auto"
                 max-width="344">
@@ -116,22 +117,18 @@
 
 <script>
     import Todos from '@/components/Todos'
-    import generic from '@/services/generic'
     import Login from '@/components/Login'
-    import RegisterUserForm from '@/components/RegisterUserForm'
+    import generic from '@/services/generic'
     import axios from 'axios'
     import { mapState, mapMutations, mapActions} from 'vuex';
     export default {
         components: {
             Todos,
-            Login,
-            RegisterUserForm,
+            Login
         },
         data: function () {
             return {
-                //isUserLoggedInForVShow: false,
-                //loggedin: false,
-                mannenKanin: false,
+                isUserLoggedInModal: false,
                 loading: false,
                 ShowTodos: false,
                 ShowInvoices: false,
@@ -148,14 +145,14 @@
             }
         },
         methods: {
-            checkIfUserIsLoggedIn() {
-                if (this.isUserLoggedIn) {
-                    this.mannenKanin = true
-                } else {
-                    this.mannenKanin = false
+            //setUpPage() {
+            //    if (this.userIsLoggedIn) {
+            //        this.getAllTodos();
 
-                }
-            },
+            //    } else {
+            //        this.isUserLoggedInModal = true;
+            //    }
+            //},
             showCart() {
                 this.showCartDialog = true;
             },
@@ -234,12 +231,11 @@
                 title: state => state.title,
                 cart: state => state.cart,
                 isUserLoggedIn: state => state.login.isUserLoggedIn,
-                
             })
         },
         mounted() {
-          this.getAllTodos();
-          this.checkIfUserIsLoggedIn();
+            //this.setUpPage();
+            this.getAllTodos();
         }
     }
     

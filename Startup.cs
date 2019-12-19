@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -57,6 +58,23 @@ namespace vueproject
                 options.Password.RequiredLength = 3;
             });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = new PathString("/");
+
+                options.Events.OnRedirectToLogin = context =>
+                {
+                    if (context.Request.Path.StartsWithSegments("/api"))
+                    {
+                        context.Response.Clear();
+                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        return Task.CompletedTask;
+                    }
+                    context.Response.Redirect(context.RedirectUri);
+                    return Task.CompletedTask;
+                };
+            });
+
             services.AddTransient<IDataRepository, DataRepository>();
             services.AddTransient<IIdentitySeeder, IdentitySeeder>();
 
@@ -83,6 +101,7 @@ namespace vueproject
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseHttpsRedirection();
 
             // Routa till MVC-controller om controllen finns

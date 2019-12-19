@@ -1,5 +1,34 @@
 ﻿<template>
     <v-card class="pa-2">
+        <div class="text-center">
+            <v-dialog v-model="agreementDialog"
+                      width="500">
+                <v-card>
+                    <v-card-title class="headline grey lighten-2"
+                                  primary-title>
+                        Terms of use
+                    </v-card-title>
+
+                    <v-card-text>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary"
+                               text
+                               @click="agreementDialog = !agreementDialog">
+                            I accept
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
+
+
+
         <h1 class="">
             <v-icon large>mdi-account-plus</v-icon> Register
         </h1>
@@ -7,20 +36,6 @@
                 v-model="valid"
                 lazy-validation
                 style="width: 100%">
-            <v-layout class="pa-3" row wrap>
-                <v-flex class="pa-2" xs12 sm12 md6>
-                    <h2>Villkor*</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu fermentum turpis. Morbi vulputate est vel risus scelerisque commodo. Donec consectetur lacinia elit, at aliquam nunc. Vivamus a nibh massa. Nullam condimentum ullamcorper purus ut vulputate. Proin a tortor eu mauris tempor iaculis vitae sed dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam ac pulvinar quam, vel sollicitudin enim. Etiam viverra porttitor lectus quis sagittis. Fusce nec orci convallis, ultrices eros et, suscipit dolor. Morbi suscipit tristique placerat. Proin fringilla aliquet nisi, eget pretium mi. Praesent a auctor purus. Pellentesque posuere scelerisque lobortis. Aenean malesuada rhoncus lacus sed accumsan.</p>
-                </v-flex>
-                <v-flex class="pa-2" xs12 sm12 md6>
-                    <h2>Följande kan du göra som registrerad användare:*</h2>
-                    <ul>
-                        <li>Spara en konfiguration</li>
-                        <li>Skicka en förfrågan</li>
-                        <li>Skicka en förfrågan med flera konfigurationer</li>
-                    </ul>
-                </v-flex>
-            </v-layout>
             <v-layout class="pa-3" row wrap>
                 <v-flex class="px-2" xs12 sm12 md6 lg6 xl6>
                     <v-text-field v-model="firstName"
@@ -31,26 +46,37 @@
                                   required></v-text-field>
 
                     <v-text-field v-model="lastName"
+                                  label="Last name"
+                                  placeholder="Last name"
                                   :counter="40"
                                   :rules="lastNameRules"
                                   required></v-text-field>
 
                     <v-text-field v-model="email"
+                                  label="E-mail address"
+                                  placeholder="E-mail address"
                                   :rules="emailRules"
                                   required></v-text-field>
                 </v-flex>
                 <v-flex class="px-2" xs12 sm12 md6 lg6 xl6>
 
                     <v-text-field v-model="password"
+                                  label="Password"
+                                  placeholder="Password"
                                   :counter="15"
                                   :rules="passwordRules"
                                   required></v-text-field>
 
                     <v-text-field v-model="retypedPassword"
+                                  label="Retype password"
+                                  placeholder="Retype password"
                                   :counter="15"
                                   :rules="retypedPasswordRules"
                                   required></v-text-field>
-                    <v-checkbox color="primary" v-model="agreed" label="Jag godkänner behandlingen av mina personuppgifter för detta ändamål i enlighet med dataskyddsinformationen på webbplatsen, som jag har läst, förstått och accepterat."></v-checkbox>
+                    <v-checkbox color="primary" v-model="agreed" 
+                                label="
+                               I agree to the terms of use."></v-checkbox>
+                    <v-btn text color="primary" @click="agreementDialog = !agreementDialog">Terms of use</v-btn>
                 </v-flex>
             </v-layout>
         </v-form>
@@ -77,7 +103,7 @@
     export default {
         data() {
             return {
-
+                agreementDialog: false,
                 valid: true,
                 agreed: false,
 
@@ -128,7 +154,8 @@
                             email: this.email,
                             password: this.password
                         },
-                        redirectUrl: this.redirectUrl
+                        //TODO redirect on register hehe
+                        redirectUrl: '/'
                     })
                 } else {
                     //TODO: return validation error

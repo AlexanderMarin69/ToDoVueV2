@@ -10,10 +10,11 @@
 
                     <v-toolbar-items>
                         <v-btn text> <router-link to="/">Start</router-link></v-btn>
-                        <v-btn text> <router-link to="/About">About</router-link></v-btn>
+                        <v-btn text> <router-link to="/Login">Login</router-link></v-btn>
+                    
                     </v-toolbar-items>
 
-                    <template v-if="$vuetify.breakpoint.smAndUp">
+                    <!--<template v-if="$vuetify.breakpoint.smAndUp">
                         <v-btn icon>
                             <v-icon>mdi-export-variant</v-icon>
                         </v-btn>
@@ -23,7 +24,7 @@
                         <v-btn icon>
                             <v-icon>mdi-plus-circle</v-icon>
                         </v-btn>
-                    </template>
+                    </template>-->
                 </v-toolbar>
             </div>
             <router-view></router-view>

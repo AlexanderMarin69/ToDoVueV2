@@ -4,23 +4,20 @@ import router from '@/plugins/default.router.js'
 export default {
     LOGIN({ commit }, data) {
     /*eslint no-debugger: */
-        //debugger;
-        commit('SET_LOADING', true, { root: true });
+        //commit('SET_LOADING', true, { root: true });
         return AccountService.login(data.vm)
             .then(() => {
                 //commit('SET_LOADING', false, { root: true });
                 commit('SET_AS_LOGGED_IN', true);
-                if (data.redirectUrl != '') {
-                    router.push(data.redirectUrl);
-                } else {
-                    router.push('/about');
-                }
+                //if (data.redirectUrl != '') {
+                //    router.push(data.redirectUrl);
+                //} else {
+                //    router.push('/');
+                //}
             }).catch((result) => {
-
                 //commit('SET_ERRORS', result);
                 console.log(result);
                 //commit('SET_LOADING', false, { root: true });
-                debugger;   
                 commit('SET_AS_LOGGED_IN', false);
             });
     },
