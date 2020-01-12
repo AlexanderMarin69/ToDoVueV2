@@ -38,6 +38,14 @@ namespace vueproject.Controllers
         }
 
         //[HttpGet]
+        //[Authorize(Roles = "ADMIN")]
+        //public async Task<IActionResult> GetAllCustomerUsers()
+        //{
+        //    IList<ApplicationUser> users = await _userManager.GetUsersInRoleAsync("PLAYERS");
+        //    return Ok(users);
+        //}
+
+        //[HttpGet]
         //public async Task<IActionResult> GetLoggedUser()
         //{
         //    //TODO: MAKE NEW VM FFS!
